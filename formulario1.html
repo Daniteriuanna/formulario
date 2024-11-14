@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ejemplo</title>
+</head>
+<body>
+    <form id="miFormulario">
+        <!-- Campo de Fecha y Hora -->
+        <label for="fechaHora">Fecha y Hora:</label>
+        <input type="datetime-local" id="fechaHora" name="fechaHora" required>
+        <br><br>
+        
+        <!-- Campo de Hombre o Mujer (Radio Button) -->
+        <label>Género:</label>
+        <input type="radio" id="hombre" name="genero" value="hombre" required>
+        <label for="hombre">Hombre</label>
+        <input type="radio" id="mujer" name="genero" value="mujer" required>
+        <label for="mujer">Mujer</label>
+        <br><br>
+        
+        <!-- Campo de Origen (Desplegable) -->
+        <label for="origen">Origen:</label>
+        <select id="origen" name="origen" required>
+            <option value="origen1">Origen 1</option>
+            <option value="origen2">Origen 2</option>
+            <option value="origen3">Origen 3</option>
+        </select>
+        <br><br>
+        
+        <!-- Campo de Gestión (Desplegable) -->
+        <label for="gestion">Gestión:</label>
+        <select id="gestion" name="gestion" required>
+            <option value="gestion1">Gestión 1</option>
+            <option value="gestion2">Gestión 2</option>
+            <option value="gestion3">Gestión 3</option>
+        </select>
+        <br><br>
+        
+        <!-- Campo de Cita Previa (Desplegable) -->
+        <label for="citaPrevia">Cita Previa:</label>
+        <select id="citaPrevia" name="citaPrevia" required>
+            <option value="cp1">Cita 1</option>
+            <option value="cp2">Cita 2</option>
+            <option value="cp3">Cita 3</option>
+        </select>
+        <br><br>
+        
+        <!-- Campo de Otros (Text Area) -->
+        <label for="otros">Otros:</label>
+        <textarea id="otros" name="otros" rows="4" cols="50"></textarea>
+        <br><br>
+        
+        <button type="button" onclick="submitForm()">Enviar</button>
+    </form>
+
+    <div id="resultados"></div>
+
+    <script>
+        function submitForm() {
+            const formData = new FormData(document.getElementById('miFormulario'));
+            const datos = {
+                fechaHora: formData.get('fechaHora'),
+                genero: formData.get('genero'),
+                origen: formData.get('origen'),
+                gestion: formData.get('gestion'),
+                citaPrevia: formData.get('citaPrevia'),
+                otros: formData.get('otros')
+            };
+
+            // Mostrar los datos en el div de resultados
+            document.getElementById('resultados').innerHTML = `
+                <h3>Datos del Formulario:</h3>
+                <p>Fecha y Hora: ${datos.fechaHora}</p>
+                <p>Género: ${datos.genero}</p>
+                <p>Origen: ${datos.origen}</p>
+                <p>Gestión: ${datos.gestion}</p>
+                <p>Cita Previa: ${datos.citaPrevia}</p>
+                <p>Otros: ${datos.otros}</p>
+            `;
+            
+            // Console log for debugging
+            console.log(datos);
+        }
+    </script>
+</body>
+</html>
